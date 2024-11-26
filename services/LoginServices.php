@@ -14,7 +14,7 @@ class Login implements AuthMethod
     public function authenticate($user, $password): bool
     {
 
-        $sql = "SELECT u.nombre, r.nombre AS rol
+        $sql = "SELECT u.id, u.nombre, r.nombre AS rol
                 FROM usuarios u
                 JOIN roles r ON u.rol_id = r.id
                 WHERE u.email = :email AND u.contrasena = :contrasena";
@@ -32,6 +32,7 @@ class Login implements AuthMethod
                 session_start();
                 $_SESSION['user'] = $userData['nombre'];
                 $_SESSION['rol'] = $userData['rol'];
+                $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['logged_in'] = true;
                 return true;
             } else {

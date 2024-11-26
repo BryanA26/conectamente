@@ -1,8 +1,17 @@
+<?php
+
+session_start();
+$rol = $_SESSION['rol'];
+$name = $_SESSION['user'];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Jubilee - Free Online Course HTML Website Template</title>
+  <title>Conectamente</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -182,18 +191,25 @@
   </div>
 
   <section id="top-nav" class="bg-secondary">
-    <div class="text-center px-md-3 py-md-2">
-      <p class="text-white py-1 m-0">Get your first course at 50% Discount. Offer lasts for the first 50 students only.
-        <span><a href="account.html" class="text-white text-decoration-underline">Register now</a></span>
+  <div class="text-center px-md-3 py-md-2">
+    <?php if (isset($name) && !empty($name)): ?>
+      <!-- Si el usuario está logueado -->
+      <p class="text-white py-1 m-0">¡Hola, <?php echo htmlspecialchars($name); ?>! Bienvenido a nuestra plataforma de salud mental. ¡Gracias por confiar en nosotros!</p>
+    <?php else: ?>
+      <!-- Si el usuario no está logueado -->
+      <p class="text-white py-1 m-0">¡Tu bienestar es lo primero! Únete a nuestra plataforma de salud mental y accede a herramientas, recursos y apoyo profesional para mejorar tu bienestar emocional.
+        <span><a href="view/register.php" class="text-white text-decoration-underline">Regístrate</a></span>
       </p>
-    </div>
-  </section>
+    <?php endif; ?>
+  </div>
+</section>
+
 
   <nav class="main-menu d-flex navbar navbar-expand-lg p-2 py-3 p-lg-4 py-lg-4 ">
     <div class="container-fluid">
       <div class="main-logo d-lg-none">
         <a href="index.html">
-          <img src="images/logo.png" alt="logo" class="img-fluid">
+          <img src="" alt="logo" class="img-fluid">
         </a>
       </div>
 
@@ -211,13 +227,13 @@
         <div class="offcanvas-body justify-content-between">
           <div class="main-logo">
             <a href="index.html">
-              <img src="images/logo.png" alt="logo" class="img-fluid">
+              <img src="images/logoConectamente.png" alt="logo" class="img-fluid" style="width: 60%;">
             </a>
           </div>
 
           <ul class="navbar-nav menu-list list-unstyled align-items-lg-center d-flex gap-md-3 mb-0">
             <li class="nav-item">
-              <a href="index.html" class="nav-link mx-2 active">Home</a>
+              <a href="index.php" class="nav-link mx-2 active">Home</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -240,7 +256,7 @@
                       class="badge bg-secondary text-white ms-2">PRO</span></a></li>
                 <li><a href="faqs.html" class="dropdown-item">FAQs<span
                       class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="account.html" class="dropdown-item">Account<span
+                <li><a href="profile.php" class="dropdown-item">Perfil<span
                       class="badge bg-secondary text-white ms-2">PRO</span></a></li>
                 <li><a href="thank-you.html" class="dropdown-item">Thankyou<span
                       class="badge bg-secondary text-white ms-2">PRO</span></a></li>
@@ -307,7 +323,7 @@
           <div class="d-none d-lg-flex align-items-center">
             <ul class="d-flex  align-items-center list-unstyled m-0">
               <li>
-                <a href="account.html" class="ms-3">
+                <a href="view/profile.php" class="ms-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
                     <use href="#user-circle" />
                   </svg> </a>
@@ -349,16 +365,17 @@
       <div class="d-flex  align-items-end mt-3">
         <ul class="d-flex  align-items-center list-unstyled m-0">
           <li>
-            <a href="account.html" class="me-3">
+            <a href="/view/profile.php" class="me-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
                 <use href="#user-circle" />
-              </svg> </a>
+              </svg> 
+            </a>
           </li>
           <li>
             <a href="wishlist.html" class="me-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
                 <use href="#heart" />
-              </svg> </a>
+              </svg> 
             </a>
           </li>
 
@@ -1485,8 +1502,8 @@
         <div class="col-md-6 text-md-end">
           <p>Free HTML Template by: <a href="https://templatesjungle.com/" target="_blank" class="fw-bold">
               TemplatesJungle</a> Distributed by: <a href="https://themewagon.com" target="_blank" class="fw-bold">
-                ThemeWagon
-              </a></p>
+              ThemeWagon
+            </a></p>
         </div>
       </div>
     </div>

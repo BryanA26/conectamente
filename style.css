@@ -105,9 +105,9 @@ CSS STRUCTURE:
 
 /* Theme Colors */
 :root {
-  --primary-color: #4CC082;
+  --primary-color: #A4D7E1;
   --light-primary-color: #E2F3F0;
-  --secondary-color: #EC6C5A;
+  --secondary-color: #73c2d1;
   --light-secondary-color: #FFE9E5;
   --tertiary-color: #FFEED3;
   --dark-color: #31333A;
@@ -146,7 +146,7 @@ body {
 
   --bs-border-color: #F7F7F7;
 
-  --bs-secondary: #EC6C5A;
+  --bs-secondary: #73c2d1;
   --bs-secondary-rgb: 236, 108, 90;
   --bs-secondary-bg-subtle: #FFE9E5;
 
@@ -901,3 +901,4 @@ iconify-icon.video-icon {
 iconify-icon.video-icon:hover {
   font-size: 35px;
 }
+
