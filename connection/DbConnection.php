@@ -19,7 +19,6 @@ class ConnectionBd implements PDOConnectionInterface
         try {
             $this->connection = new PDO("mysql:host=$this->server;port=$this->port;dbname=$this->db", $this->user, $this->password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "conectado";
             return $this->connection;
         } catch (PDOException $error) {
             echo "Conexion fallida" . $error->getMessage();

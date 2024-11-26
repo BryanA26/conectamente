@@ -56,4 +56,53 @@ class ModelEntities {
         }
 
     }
+
+    public function deleteRecord($keyPrimary, $value) {
+        $modelConnection = new ModelConnection();
+    
+        try {
+            $sql = "DELETE FROM {$this->table} WHERE {$keyPrimary} = ?";
+            $modelConnection->executeComandSql($sql, [$value]);
+        } catch (PDOException $e) {
+            echo "Error al eliminar en {$this->table}: " . $e->getMessage();
+        } 
+    }
+
+    public function getForId($keyPrimary, $value) {
+        $modelConnection = new ModelConnection();
+    
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE {$keyPrimary} = ?";
+            $resultado = $modelConnection->executeComandSql($sql, [$value]);
+    
+            if ($resultado) {
+                return new Entitie($resultado[0]); // Devuelve un objeto Entidad si hay resultados.
+            } else {
+                return null; // Devuelve null si no hay resultados.
+            }
+        } catch (PDOException $e) {
+            echo "Error al buscar en {$this->table}: " . $e->getMessage();
+            return null; // Devuelve null en caso de error.
+        } 
+    }
+
+    public function getForAll() {
+        $modelConnection = new ModelConnection();
+    
+        try {
+            $sql = "SELECT * FROM {$this->table}";
+            $resultado = $modelConnection->executeSelectSql($sql);
+    
+            $entidades = []; 
+            foreach ($resultado as $fila) {
+                $entidad = new Entitie($fila); 
+                $entidades[] = $entidad;
+            }
+    
+            return $entidades;
+        } catch (PDOException $e) {
+            echo "Error al obtener datos de {$this->table}: " . $e->getMessage();
+            return [];
+        } 
+    }
 }
