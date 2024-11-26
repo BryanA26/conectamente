@@ -2,7 +2,7 @@
 // Inicia la sesión
 session_start();
 
-require_once __DIR__ . "/../factory/AuthMethodFactory.php";  // Asegúrate de incluir la fábrica
+require_once __DIR__ . "/../factory/AuthMethodFactory.php";  
 
 class LoginController {
 
@@ -34,7 +34,7 @@ class LoginController {
                         header('Location: index.php');
                         break;
                 }
-                exit(); // Asegúrate de hacer exit después de header para evitar que el script siga ejecutándose
+                exit(); 
             } else {
                 // Si las credenciales son incorrectas
                 echo "Usuario o contraseña incorrectos.";

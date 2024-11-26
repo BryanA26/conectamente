@@ -17,16 +17,15 @@ class Login implements AuthMethod
         $sql = "SELECT u.nombre, r.nombre AS rol
                 FROM usuarios u
                 JOIN roles r ON u.rol_id = r.id
-                WHERE u.email = :email AND u.contraseña = :contraseña";
+                WHERE u.email = :email AND u.contrasena = :contrasena";
 
         $params = [
             ':email' => $user,
-            ':contraseña' => $password
+            ':contrasena' => $password
         ];
 
         try {
             $result =  $this->conn->executeSelectSql($sql, $params);
-            var_dump($params);
             if ($result && count($result) > 0) {
                 $userData = $result[0];
 
