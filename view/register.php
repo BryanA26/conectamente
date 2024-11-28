@@ -74,6 +74,8 @@ if ($register) {
 </head>
 
 <body>
+    
+    
     <div class="container">
         <div class="row align-items-center min-vh-100">
             <!-- Left Section -->
@@ -96,8 +98,9 @@ if ($register) {
                             <div class="col">
                                 <select name="tipo_documento" class="form-select">
                                     <option selected>Tipo de documento</option>
-                                    <option value="1">Cédula</option>
-                                    <option value="2">Pasaporte</option>
+                                    <option value="CC">Cédula</option>
+                                    <option value="PP">Pasaporte</option>
+                                    <option value="CE">Cédula de extranjeria</option>
                                 </select>
                             </div>
                             <div class="col">

@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="mt-3 text-center">
           <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
           <br>
-          <a href="#" class="text-decoration-none">¿No tienes cuenta? <strong>Regístrate aquí</strong></a>
+          <a href="view/register.php" class="text-decoration-none">¿No tienes cuenta? <strong>Regístrate aquí</strong></a>
         </div>
       </div>
     </div>

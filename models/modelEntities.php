@@ -73,7 +73,7 @@ class ModelEntities {
     
         try {
             $sql = "SELECT * FROM {$this->table} WHERE {$keyPrimary} = ?";
-            $resultado = $modelConnection->executeComandSql($sql, [$value]);
+            $resultado = $modelConnection->executeSelectSql($sql, [$value]);
     
             if ($resultado) {
                 return new Entitie($resultado[0]); // Devuelve un objeto Entidad si hay resultados.

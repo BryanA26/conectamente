@@ -25,10 +25,10 @@ class LoginController {
                         header('Location: index.php');
                         break;
                     case 'Estudiante':
-                        header('Location: index.php.php');
+                        header('Location: index.php');
                         break;
                     case 'Sicologo':
-                        header('Location: index.php.php');
+                        header('Location: index.php');
                         break;
                     default:
                         header('Location: index.php');

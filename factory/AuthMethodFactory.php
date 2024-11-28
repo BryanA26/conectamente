@@ -10,7 +10,7 @@ class AuthMethodFactory {
     public static function createAuthMethod(string $loginType): AuthMethod
     {
         switch ($loginType) {
-            case 'login':  // Si el tipo de login es 'login', crea una instancia de Login
+            case 'login':  
                 return new Login();
 
             default:

@@ -1,8 +1,13 @@
 <?php
 
+
 session_start();
-$rol = $_SESSION['rol'];
-$name = $_SESSION['user'];
+$rol = $_SESSION['rol'] ?? "";
+$name = $_SESSION['user'] ?? "";
+
+// session_unset();
+// session_destroy();
+// exit;
 
 
 ?>
@@ -115,6 +120,10 @@ $name = $_SESSION['user'];
         <path fill="currentColor"
           d="M20.16 5A6.29 6.29 0 0 0 12 4.36a6.27 6.27 0 0 0-8.16 9.48l6.21 6.22a2.78 2.78 0 0 0 3.9 0l6.21-6.22a6.27 6.27 0 0 0 0-8.84m-1.41 7.46l-6.21 6.21a.76.76 0 0 1-1.08 0l-6.21-6.24a4.29 4.29 0 0 1 0-6a4.27 4.27 0 0 1 6 0a1 1 0 0 0 1.42 0a4.27 4.27 0 0 1 6 0a4.29 4.29 0 0 1 .08 6Z" />
       </symbol>
+      <symbol id="logout" viewBox="0 0 32 32">
+        <path fill="currentColor"
+          d="M10 17v-4h4V4h-4v4H7V4a7 7 0 0 1 7-7 7 7 0 0 1 7 7v13h-4v-4h-4v4h4v4h-6v-4h-4z" />
+      </symbol>
     </defs>
   </svg>
 
@@ -191,18 +200,18 @@ $name = $_SESSION['user'];
   </div>
 
   <section id="top-nav" class="bg-secondary">
-  <div class="text-center px-md-3 py-md-2">
-    <?php if (isset($name) && !empty($name)): ?>
-      <!-- Si el usuario está logueado -->
-      <p class="text-white py-1 m-0">¡Hola, <?php echo htmlspecialchars($name); ?>! Bienvenido a nuestra plataforma de salud mental. ¡Gracias por confiar en nosotros!</p>
-    <?php else: ?>
-      <!-- Si el usuario no está logueado -->
-      <p class="text-white py-1 m-0">¡Tu bienestar es lo primero! Únete a nuestra plataforma de salud mental y accede a herramientas, recursos y apoyo profesional para mejorar tu bienestar emocional.
-        <span><a href="view/register.php" class="text-white text-decoration-underline">Regístrate</a></span>
-      </p>
-    <?php endif; ?>
-  </div>
-</section>
+    <div class="text-center px-md-3 py-md-2">
+      <?php if (isset($name) && !empty($name)): ?>
+        <!-- Si el usuario está logueado -->
+        <p class="text-white py-1 m-0">¡Hola, <?php echo htmlspecialchars($name); ?>! Bienvenido a nuestra plataforma de salud mental. ¡Gracias por confiar en nosotros!</p>
+      <?php else: ?>
+        <!-- Si el usuario no está logueado -->
+        <p class="text-white py-1 m-0">¡Tu bienestar es lo primero! Únete a nuestra plataforma de salud mental y accede a herramientas, recursos y apoyo profesional para mejorar tu bienestar emocional.
+          <span><a href="view/register.php" class="text-white text-decoration-underline">Regístrate</a></span>
+        </p>
+      <?php endif; ?>
+    </div>
+  </section>
 
 
   <nav class="main-menu d-flex navbar navbar-expand-lg p-2 py-3 p-lg-4 py-lg-4 ">
@@ -236,56 +245,31 @@ $name = $_SESSION['user'];
               <a href="index.php" class="nav-link mx-2 active">Home</a>
             </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link mx-2 dropdown-toggle align-items-center" role="button" id="pages"
-                data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-              <ul class="dropdown-menu" aria-labelledby="pages">
-                <li><a href="about.html" class="dropdown-item">About Us<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="instructors.html" class="dropdown-item">Instructors<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="cart.html" class="dropdown-item">Cart<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="wishlist.html" class="dropdown-item">Wishlist<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="checkout.html" class="dropdown-item">Checkout<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="price-plan.html" class="dropdown-item">Price Plan<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="contact.html" class="dropdown-item">Contact<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="faqs.html" class="dropdown-item">FAQs<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="profile.php" class="dropdown-item">Perfil<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="thank-you.html" class="dropdown-item">Thankyou<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="error.html" class="dropdown-item">Error 404<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="styles.html" class="dropdown-item">Styles<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-              </ul>
-            </li>
+            <?php if (!empty($rol)): ?>
+              <li class="nav-item dropdown">
+                <a class="nav-link mx-2 dropdown-toggle align-items-center" role="button" id="pages"
+                  data-bs-toggle="dropdown" aria-expanded="false">Recursos</a>
+                <ul class="dropdown-menu" aria-labelledby="pages">
+                  <li><a href="about.html" class="dropdown-item">Podcast</a></li>
+                  <li><a href="instructors.html" class="dropdown-item">Talleres</a></li>
+                  <li><a href="cart.html" class="dropdown-item">Autoevaluacion</a></li>
+                </ul>
+              </li>
+            <?php endif; ?>
+
 
             <li class="nav-item dropdown">
               <a class="nav-link mx-2 dropdown-toggle align-items-center" role="button" id="courses"
-                data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
-              <ul class="dropdown-menu" aria-labelledby="courses">
-                <li><a href="courses.html" class="dropdown-item">Course<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="courses-details.html" class="dropdown-item">Courses Detail<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-              </ul>
+                data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
             </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link mx-2 dropdown-toggle align-items-center" role="button" id="events"
-                data-bs-toggle="dropdown" aria-expanded="false">events</a>
+                data-bs-toggle="dropdown" aria-expanded="false">Tips</a>
               <ul class="dropdown-menu" aria-labelledby="courses">
-                <li><a href="event.html" class="dropdown-item">event<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="event-details.html" class="dropdown-item">event details<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
+                <li><a href="event.html" class="dropdown-item">Manejar el estres</a></li>
+                <li><a href="event-details.html" class="dropdown-item">Manejar tu autoestima</a></li>
+                <li><a href="event-details.html" class="dropdown-item">Manejar la ansiedad</a></li>
               </ul>
             </li>
 
@@ -293,31 +277,17 @@ $name = $_SESSION['user'];
               <a class="nav-link mx-2 dropdown-toggle align-items-center" role="button" id="blog"
                 data-bs-toggle="dropdown" aria-expanded="false">blog</a>
               <ul class="dropdown-menu" aria-labelledby="blog">
-                <li><a href="blog.html" class="dropdown-item">blog<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="single-post.html" class="dropdown-item">single post<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
+                <li><a href="blog.html" class="dropdown-item">blog</a></li>
+                <li><a href="single-post.html" class="dropdown-item">single post</a></li>
               </ul>
             </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link mx-2 dropdown-toggle align-items-center" role="button" id="shop"
-                data-bs-toggle="dropdown" aria-expanded="false">shop</a>
-              <ul class="dropdown-menu" aria-labelledby="shop">
-                <li><a href="shop.html" class="dropdown-item">Shop<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-                <li><a href="single-product.html" class="dropdown-item">Single Product<span
-                      class="badge bg-secondary text-white ms-2">PRO</span></a></li>
-              </ul>
-            </li>
 
             <li class="nav-item">
               <a href="contact.html" class="nav-link mx-2">contact</a>
             </li>
-            <li class="nav-item">
-              <a href="https://templatesjungle.gumroad.com/l/jubilee-free-bootstrap-5-html-website-template-for-online-course"
-                class="nav-link mx-2 text-decoration-underline" target="_blank">GET PRO</a>
-            </li>
+         
+
           </ul>
 
           <div class="d-none d-lg-flex align-items-center">
@@ -328,13 +298,15 @@ $name = $_SESSION['user'];
                     <use href="#user-circle" />
                   </svg> </a>
               </li>
-              <li>
-                <a href="wishlist.html" class="ms-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
-                    <use href="#heart" />
-                  </svg> </a>
-                </a>
-              </li>
+              <?php if ($rol == 'estudiante'): ?>
+                <li>
+                  <a href="view/supportSystem.php" class="ms-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
+                      <use href="#heart" />
+                    </svg> </a>
+                  </a>
+                </li>
+              <?php endif ?>
 
               <li class="">
                 <a href="#" class="ms-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
@@ -368,14 +340,14 @@ $name = $_SESSION['user'];
             <a href="/view/profile.php" class="me-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
                 <use href="#user-circle" />
-              </svg> 
+              </svg>
             </a>
           </li>
           <li>
             <a href="wishlist.html" class="me-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px">
                 <use href="#heart" />
-              </svg> 
+              </svg>
             </a>
           </li>
 
@@ -1367,8 +1339,10 @@ $name = $_SESSION['user'];
       <div class="row">
         <div class="col-sm-6 col-lg-4 my-3">
           <div class="footer-menu">
-            <a href="index.html">
-              <img src="images/logo.png" alt="logo" class="img-fluid">
+            <a href="index.php">
+              <img src="images/logoConectamente.png" alt="logo" class="img-fluid" style="width: 60%;">
+            </a><a href="index.php">
+              <img src="images/LOGO ITM 2020-2-02.png" alt="logo" class="img-fluid" style="width: 60%;">
             </a>
             <div class="social-links mt-4">
               <ul class="d-flex list-unstyled ">
